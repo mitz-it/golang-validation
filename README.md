@@ -28,13 +28,18 @@ func (validator *CustomValidator) Validate(instance interface{}) error {
   
   return err
 }
+
+func NewCustomValidator() validation.IValidator {
+  return &CustomValidator{}
+}
 ```
 
 Use the validator:
 
 ```go
 // ...
-validator := CustomValidator{}
+var validator validation.IValidator
+validator = customvalidators.NewCustomValidator()
 err := validator.Validate(command)
 // ...
 ```
@@ -68,5 +73,9 @@ func (validator *CustomValidator) Validate(instance interface{}) error {
     )
   
   return err
+}
+
+func NewCustomValidator() validation.IValidator {
+  return &CustomValidator{}
 }
 ```
